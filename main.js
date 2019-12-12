@@ -526,7 +526,11 @@ var JobsComponent = /** @class */ (function () {
         // }
         var _this = this;
         var last_query = localStorage.getItem("last_query");
-        if (last_query == null || last_query == "") {
+        var company = localStorage.getItem("last_company");
+        company = company == null ? "company" : company;
+        var location = localStorage.getItem("last_location");
+        var searchall = (last_query == null || last_query == "") && (location == null || location == "") && (company == null || company == "company");
+        if (searchall) {
             this.getallService.getAllJobs()
                 .subscribe(function (res) {
                 _this.jobdataService.setData(res);
@@ -552,9 +556,6 @@ var JobsComponent = /** @class */ (function () {
             });
         }
         else {
-            var company = localStorage.getItem("last_company");
-            company = company == null ? "company" : company;
-            var location = localStorage.getItem("last_location");
             this.searchService.search(last_query, location, company).subscribe(function (res) {
                 console.log("search result");
                 console.log(res);
