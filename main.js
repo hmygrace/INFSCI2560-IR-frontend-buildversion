@@ -527,9 +527,9 @@ var JobsComponent = /** @class */ (function () {
         var _this = this;
         var last_query = localStorage.getItem("last_query");
         var company = localStorage.getItem("last_company");
-        company = company == null ? "company" : company;
+        // company = company==null? "company":company;
         var location = localStorage.getItem("last_location");
-        var searchall = (last_query == null || last_query == "") && (location == null || location == "") && (company == null || company == "company");
+        var searchall = (last_query == null || last_query == "") && (location == null || location == "") && (company == null || company == "");
         if (searchall) {
             this.getallService.getAllJobs()
                 .subscribe(function (res) {
@@ -638,7 +638,7 @@ module.exports = "a{\r\n    color: white;\r\n}\r\n/*# sourceMappingURL=data:appl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-primary justify-content-between\">\n  <a class=\"navbar-brand col-2\" style=\"margin-left: 5%;\">JOB FINDER</a>\n  <form class=\"form-inline col-9\" style=\"text-align: center;\" [formGroup]=\"myForm\" (ngSubmit)=\"submitForm(myForm)\">\n    <input \n     class=\"form-control col-5\" \n     type=\"search\"\n     placeholder=\"Search\"\n     aria-label=\"Search\"\n     placeholder=\"Search\"\n     style=\"margin-right: 1%;\"\n     formControlName=\"query\">\n     <input \n     class=\"form-control col-2\" \n     type=\"search\"\n     placeholder=\"Location\"\n     aria-label=\"Location\"\n     style=\"margin-right: 1%;\"\n     formControlName=\"location\">\n    <select class=\"custom-select\" style=\"margin-right: 3%;\" formControlName=\"company\" value=\"{{last_company}}\">\n      <option *ngFor=\"let company of companyList\" value=\"{{company}}\">{{company}}</option>\n    </select>\n    <button class=\"btn btn-outline-success my-2 my-sm-0\"  type=\"submit\">Search</button>\n  </form>\n</nav>\n<nav class=\"navbar navbar-dark bg-primary justify-content-between\" style=\"padding-top: 0;\">\n  <div style=\"width: 60%;margin: auto;\" class=\"row\">\n    <div style=\"margin: auto;color: white;\" class=\"col-6 text-center\"><a routerLink=\"/jobs\">JOBS</a></div>\n    <div style=\"margin: auto;color: white;\" class=\"col-6 text-center\"><a routerLink=\"/saved\">SAVED</a></div>\n  \n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-primary justify-content-between\">\n  <a class=\"navbar-brand col-2\" style=\"margin-left: 5%;\">JOB FINDER</a>\n  <form class=\"form-inline col-9\" style=\"text-align: center;\" [formGroup]=\"myForm\" (ngSubmit)=\"submitForm(myForm)\">\n    <input \n     class=\"form-control col-5\" \n     type=\"search\"\n     placeholder=\"Search\"\n     aria-label=\"Search\"\n     placeholder=\"Search\"\n     style=\"margin-right: 1%;\"\n     formControlName=\"query\">\n     <input \n     class=\"form-control col-2\" \n     type=\"search\"\n     placeholder=\"Location\"\n     aria-label=\"Location\"\n     style=\"margin-right: 1%;\"\n     formControlName=\"location\">\n    <select class=\"custom-select\" style=\"margin-right: 3%;\" formControlName=\"company\" value=\"{{last_company}}\">\n      <option [ngValue]=\"\">company</option>\n      <option *ngFor=\"let company of companyList\" value=\"{{company}}\">{{company}}</option>\n    </select>\n    <button class=\"btn btn-outline-success my-2 my-sm-0\"  type=\"submit\">Search</button>\n  </form>\n</nav>\n<nav class=\"navbar navbar-dark bg-primary justify-content-between\" style=\"padding-top: 0;\">\n  <div style=\"width: 60%;margin: auto;\" class=\"row\">\n    <div style=\"margin: auto;color: white;\" class=\"col-6 text-center\"><a routerLink=\"/jobs\">JOBS</a></div>\n    <div style=\"margin: auto;color: white;\" class=\"col-6 text-center\"><a routerLink=\"/saved\">SAVED</a></div>\n  \n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -671,7 +671,7 @@ var NavbarComponent = /** @class */ (function () {
         this.getallService = getallService;
         this.jobdataService = jobdataService;
         this.companyList = [
-            "company",
+            // "company",
             "Facebook",
             "Apple",
             "Netflix"
@@ -685,7 +685,7 @@ var NavbarComponent = /** @class */ (function () {
         this.myForm = this.formBuilder.group({
             query: [this.last_query ? this.last_query : ""],
             location: [this.last_location ? this.last_location : ""],
-            company: [this.last_company ? this.last_company : "company"],
+            company: [this.last_company ? this.last_company : ""],
         });
     };
     NavbarComponent.prototype.submitForm = function (_a) {
@@ -716,7 +716,7 @@ var NavbarComponent = /** @class */ (function () {
         var location = localStorage.getItem("last_location");
         this.last_location = location;
         var company = localStorage.getItem("last_company");
-        this.last_company = company ? company : "company";
+        this.last_company = company;
         this.createForm();
     };
     NavbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
